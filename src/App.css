@@ -1,0 +1,91 @@
+body {
+  font-family: 'Amoresa', serif;
+  background: #000;
+  color: #fff;
+}
+
+.app {
+  min-height: 100vh;
+  background: #000000;
+  position: relative;
+  overflow: hidden;
+}
+
+.content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+}
+
+.main-text {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.with-farook {
+  font-family: 'Amoresa', serif;
+  font-size: 12vw;
+  font-weight: 700;
+  color: #ffbd59;
+  text-shadow: 0 0 30px rgba(255, 189, 89, 0.3);
+  letter-spacing: 2px;
+  opacity: 0;
+  transform: translateY(50px);
+  width: 80vw;
+  text-align: center;
+  line-height: 0.9;
+}
+
+.sub-brand {
+  position: absolute;
+  top: -80px;
+  left: 12%;
+  font-family: 'League Spartan', sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  color: #888888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0;
+  transform: translateY(20px);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  z-index: 5;
+  will-change: transform, opacity;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .with-farook {
+    font-size: 10vw;
+    width: 85vw;
+  }
+  
+  .sub-brand {
+    font-size: 2.5rem;
+    font-family: 'League Spartan', sans-serif;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+  }
+}
+
+@media (max-width: 480px) {
+  .with-farook {
+    font-size: 8vw;
+    width: 90vw;
+  }
+  
+  .sub-brand {
+    font-size: 2rem;
+    font-family: 'League Spartan', sans-serif;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+  }
+}
