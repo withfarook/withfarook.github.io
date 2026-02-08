@@ -5,6 +5,7 @@ const MainContent: React.FC = () => {
   const withFarookRef = useRef<HTMLDivElement>(null);
   const subBrandRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const hexagonsRef = useRef<HTMLDivElement>(null);
 
   const subBrands = [
     'CODE',
@@ -16,13 +17,27 @@ const MainContent: React.FC = () => {
   const finalMessage = "Let's do it";
 
   useEffect(() => {
-    if (!withFarookRef.current || !subBrandRef.current) return;
+    if (!withFarookRef.current || !subBrandRef.current || !hexagonsRef.current) return;
 
     // Initialize subbrand as hidden
     gsap.set(subBrandRef.current, {
       opacity: 0,
       y: 30,
       scale: 0.9
+    });
+
+    // Initialize hexagons as hidden
+    gsap.set(hexagonsRef.current, {
+      opacity: 0,
+      y: 30
+    });
+
+    // Initialize individual hexagons
+    const hexagonElements = hexagonsRef.current.children;
+    gsap.set(hexagonElements, {
+      opacity: 0,
+      scale: 0.8,
+      y: 20
     });
 
     // Create master timeline for the entire animation sequence
@@ -115,7 +130,7 @@ const MainContent: React.FC = () => {
       }
     });
 
-    // Step 3: After all subbrands, show "Let's do it" quickly
+    // Step 3: After all subbrands, show "Let's do it" and hexagons together
     const finalMessageStartTime = 0.5 + (subBrands.length * 0.75) + 0.1;
     
     // Fade out last subbrand smoothly
@@ -145,6 +160,25 @@ const MainContent: React.FC = () => {
       ease: "back.out(1.2)"
     }, finalMessageStartTime + 0.3);
 
+    // Show hexagons container at the same time as "Let's do it"
+    masterTL.to(hexagonsRef.current, {
+      opacity: 1,
+      y: 0,
+      visibility: 'visible',
+      duration: 0.5,
+      ease: "power2.out"
+    }, finalMessageStartTime + 0.3);
+
+    // Animate individual hexagons with stagger (starting at the same time)
+    masterTL.to(hexagonElements, {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      duration: 0.6,
+      ease: "back.out(1.2)",
+      stagger: 0.1
+    }, finalMessageStartTime + 0.3);
+
     // Add a subtle, continuous breathing animation to "Let's do it"
     masterTL.to(subBrandRef.current, {
       scale: 1.03,
@@ -168,6 +202,15 @@ const MainContent: React.FC = () => {
             withFarook
           </div>
           <div className="sub-brand" ref={subBrandRef}></div>
+        </div>
+        <div className="hexagons-container" ref={hexagonsRef}>
+          {subBrands.map((brand, index) => (
+            <div key={index} className="hexagon-wrapper">
+              <div className="hexagon">
+                <div className="hexagon-text">{brand}</div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
