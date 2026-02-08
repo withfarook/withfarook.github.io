@@ -207,6 +207,9 @@ const MainContent: React.FC = () => {
           {subBrands.map((brand, index) => (
             <div key={index} className="hexagon-wrapper">
               <div className="hexagon">
+                <svg className="hexagon-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                  <polygon points="50,0 100,25 100,75 50,100 0,75 0,25" fill="none" stroke="#ffbd59" strokeWidth="3" />
+                </svg>
                 <div className="hexagon-text">{brand}</div>
               </div>
             </div>

@@ -69,7 +69,7 @@ html, body {
 
 .hexagons-container {
   position: fixed;
-  top: calc(50% + 200px);
+  top: calc(50% + 120px);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -91,8 +91,8 @@ html, body {
 }
 
 .hexagon-wrapper {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   display: inline-block;
   position: relative;
   text-decoration: none;
@@ -102,63 +102,45 @@ html, body {
 .hexagon {
   cursor: pointer;
   position: relative;
-  width: 80%;
-  height: 46%;
+  width: 100%;
+  height: 100%;
   margin: 0 auto;
   background: transparent;
-  border: 2px solid #ffbd59;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: 0.5s;
+  transition: all 0.5s ease;
+  box-sizing: border-box;
+}
+
+.hexagon-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .hexagon-text {
   z-index: 100;
   position: relative;
   font-family: 'League Spartan', sans-serif;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #ffbd59;
   text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.hexagon:before,
-.hexagon:after {
-  position: absolute;
-  content: "";
-  background: transparent;
-  border: none;
-  height: 100%;
-  width: 100%;
-  border-radius: 0;
-  transition: 0.5s;
-  transform-origin: center;
-  box-sizing: border-box;
-}
-
-.hexagon:before {
-  transform: rotateZ(60deg);
-}
-
-.hexagon:after {
-  transform: rotateZ(-60deg);
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(255, 189, 89, 0.5);
 }
 
 .hexagon:hover {
-  border-color: #ffbd59;
-  box-shadow: 0 0 15px rgba(255, 189, 89, 0.5);
-  transition: 0.5s;
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
 }
 
-.hexagon:hover:before {
-  transition: 0.5s;
-}
 
-.hexagon:hover:after {
-  transition: 0.5s;
-}
 
 /* Responsive design */
 @media (max-width: 768px) {
@@ -181,12 +163,12 @@ html, body {
   }
 
   .hexagon-wrapper {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
   }
 
   .hexagon-text {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
   }
 }
 
@@ -211,12 +193,12 @@ html, body {
   }
 
   .hexagon-wrapper {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     margin: 10px 0px;
   }
 
   .hexagon-text {
-    font-size: 0.65rem;
+    font-size: 0.7rem;
   }
 }
