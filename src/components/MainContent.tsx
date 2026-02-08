@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { gsap, createOptimizedGSAP } from '../utils/gsapLoader';
+import { gsap } from '../utils/gsapLoader';
 
 const MainContent: React.FC = () => {
   const withFarookRef = useRef<HTMLDivElement>(null);
@@ -13,147 +13,150 @@ const MainContent: React.FC = () => {
     'STORIES'
   ];
 
+  const finalMessage = "Let's do it";
+
   useEffect(() => {
-    // Create optimized GSAP timeline for initial animation
-    const tl = createOptimizedGSAP();
-    
-    // Initial animation for "withFarook"
-    if (withFarookRef.current) {
-      tl.fromTo(withFarookRef.current, 
-        { opacity: 0, y: 80, scale: 0.8 },
-        { 
-          opacity: 1, 
-          y: 0, 
+    if (!withFarookRef.current || !subBrandRef.current) return;
+
+    // Initialize subbrand as hidden
+    gsap.set(subBrandRef.current, {
+      opacity: 0,
+      y: 30,
+      scale: 0.9
+    });
+
+    // Create master timeline for the entire animation sequence
+    const masterTL = gsap.timeline({
+      defaults: {
+        ease: "power3.out"
+      }
+    });
+
+    // Step 1: Animate "withFarook" entrance (quick but smooth)
+    masterTL.fromTo(withFarookRef.current, 
+      { 
+        opacity: 0, 
+        y: 50, 
+        scale: 0.88 
+      },
+      { 
+        opacity: 1, 
+        y: 0, 
+        scale: 1,
+        duration: 1.2,
+        ease: "power3.out"
+      }
+    );
+
+    // Step 2: Cycle through all subbrands with optimized timing
+    // Each brand: 0.3s fade out + 0.4s fade in + 0.05s display = 0.75s total per brand
+    // First brand appears at 0.5s (immediately visible)
+    subBrands.forEach((brand, index) => {
+      const brandStartTime = 0.5 + (index * 0.75);
+      
+      if (index === 0) {
+        // First brand - quick fade in
+        masterTL.fromTo(subBrandRef.current, {
+          opacity: 0,
+          y: 25,
+          scale: 0.92
+        }, {
+          opacity: 1,
+          y: 0,
           scale: 1,
-          duration: 2.5,
-          ease: "power3.out"
-        }
-      );
-    }
-
-    // Hide subbrand initially and set up for animations
-    if (subBrandRef.current) {
-      subBrandRef.current.textContent = '';
-      subBrandRef.current.style.opacity = '0';
-      subBrandRef.current.style.transform = 'translateY(20px)';
-    }
-
-    // Function to animate sub-brand text appearance
-    const animateSubBrand = (brand: string) => {
-      if (!subBrandRef.current) return;
-
-      // Animate out current text first
-      if (subBrandRef.current.textContent) {
-        gsap.to(subBrandRef.current, 
-          { 
-            opacity: 0, 
-            y: -20, 
-            scale: 1.1,
-            rotationX: 15,
-            duration: 0.6,
-            ease: "power3.in",
-            onComplete: () => {
-              // Animate in new text
-              if (subBrandRef.current) {
-                subBrandRef.current.textContent = brand;
-                gsap.fromTo(subBrandRef.current, 
-                  { 
-                    opacity: 0, 
-                    y: 30, 
-                    scale: 0.9,
-                    rotationX: -15
-                  },
-                  { 
-                    opacity: 1, 
-                    y: 0, 
-                    scale: 1,
-                    rotationX: 0,
-                    duration: 1.0,
-                    ease: "power3.out"
-                  }
-                );
-              }
+          duration: 0.4,
+          ease: "power2.out",
+          onStart: () => {
+            if (subBrandRef.current) {
+              subBrandRef.current.textContent = brand;
             }
           }
-        );
+        }, brandStartTime);
+
+        // Hold the first brand visible
+        masterTL.to(subBrandRef.current, {
+          duration: 0.35,
+          ease: "none"
+        }, brandStartTime + 0.4);
       } else {
-        // First time - just animate in
-        if (subBrandRef.current) {
-          subBrandRef.current.textContent = brand;
-          gsap.fromTo(subBrandRef.current, 
-            { 
-              opacity: 0, 
-              y: 30, 
-              scale: 0.9,
-              rotationX: -15
-            },
-            { 
-              opacity: 1, 
-              y: 0, 
-              scale: 1,
-              rotationX: 0,
-              duration: 1.0,
-              ease: "power3.out"
+        // Subsequent brands - quick fade out then fade in
+        masterTL.to(subBrandRef.current, {
+          opacity: 0,
+          y: -15,
+          scale: 1.08,
+          duration: 0.3,
+          ease: "power1.in",
+          onComplete: () => {
+            // Update text content during fade out
+            if (subBrandRef.current) {
+              subBrandRef.current.textContent = brand;
             }
-          );
+          }
+        }, brandStartTime);
+
+        // Fade in new brand with smooth entrance
+        masterTL.fromTo(subBrandRef.current, {
+          opacity: 0,
+          y: 25,
+          scale: 0.92
+        }, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.4,
+          ease: "power2.out"
+        }, brandStartTime + 0.3);
+
+        // Hold the brand visible
+        masterTL.to(subBrandRef.current, {
+          duration: 0.05,
+          ease: "none"
+        }, brandStartTime + 0.7);
+      }
+    });
+
+    // Step 3: After all subbrands, show "Let's do it" quickly
+    const finalMessageStartTime = 0.5 + (subBrands.length * 0.75) + 0.1;
+    
+    // Fade out last subbrand smoothly
+    masterTL.to(subBrandRef.current, {
+      opacity: 0,
+      y: -15,
+      scale: 1.08,
+      duration: 0.3,
+      ease: "power1.in",
+      onComplete: () => {
+        if (subBrandRef.current) {
+          subBrandRef.current.textContent = finalMessage;
         }
       }
-    };
+    }, finalMessageStartTime);
 
-    // Auto-cycle through sub-brands
-    let currentIndex = 0;
-    let cycleInterval: NodeJS.Timeout | null = null;
+    // Fade in "Let's do it" with a memorable but quick entrance
+    masterTL.fromTo(subBrandRef.current, {
+      opacity: 0,
+      y: 30,
+      scale: 0.88
+    }, {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 0.8,
+      ease: "back.out(1.2)"
+    }, finalMessageStartTime + 0.3);
 
-    const startNewCycle = () => {
-      currentIndex = 0;
-      
-      // Cycle through all brands quickly (1 second each)
-      subBrands.forEach((brand, index) => {
-        setTimeout(() => {
-          animateSubBrand(brand);
-          currentIndex = index + 1;
-          
-          // If this is the last brand, clear text after 1 second, then wait 3 seconds
-          if (index === subBrands.length - 1) {
-            setTimeout(() => {
-              // Clear the text (animate out)
-              if (subBrandRef.current) {
-                gsap.to(subBrandRef.current, 
-                  { 
-                    opacity: 0, 
-                    y: -20, 
-                    scale: 1.1,
-                    rotationX: 15,
-                    duration: 0.6,
-                    ease: "power3.in",
-                    onComplete: () => {
-                      if (subBrandRef.current) {
-                        subBrandRef.current.textContent = '';
-                        subBrandRef.current.style.opacity = '0';
-                        subBrandRef.current.style.transform = 'translateY(20px)';
-                      }
-                    }
-                  }
-                );
-              }
-              
-              // Wait 3 seconds after clearing, then start new cycle
-              setTimeout(() => {
-                startNewCycle(); // Start next cycle
-              }, 3000);
-            }, 1000); // Wait 1 second after STORIES appears, then clear
-          }
-        }, index * 1000); // 1 second delay for each brand
-      });
-    };
+    // Add a subtle, continuous breathing animation to "Let's do it"
+    masterTL.to(subBrandRef.current, {
+      scale: 1.03,
+      duration: 2.5,
+      ease: "sine.inOut",
+      yoyo: true,
+      repeat: -1
+    }, finalMessageStartTime + 1.1);
 
-    // Start cycling after initial withFarook animation
-    const startCycling = setTimeout(() => {
-      startNewCycle(); // Start first cycle
-    }, 3000);
-
+    // Cleanup function
     return () => {
-      clearTimeout(startCycling);
+      masterTL.kill();
     };
   }, []);
 
