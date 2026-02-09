@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './ContactUs.css';
 
@@ -7,17 +7,56 @@ const ContactUs: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    typeOfQuery: '',
     projectBrief: ''
   });
   const [selectedInterests, setSelectedInterests] = useState<string[]>(['NEXTGEN']);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const interests = ['CODE', 'NEXTGEN', 'BRAND', 'STORIES'];
+  const queryTypes = [
+    { value: 'general', label: 'General Inquiry' },
+    { value: 'project', label: 'Project Proposal' },
+    { value: 'collaboration', label: 'Collaboration' },
+    { value: 'support', label: 'Support' },
+    { value: 'other', label: 'Other' }
+  ];
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    if (isDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isDropdownOpen]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
+  };
+
+  const handleQueryTypeSelect = (value: string) => {
+    setFormData({
+      ...formData,
+      typeOfQuery: value
+    });
+    setIsDropdownOpen(false);
+  };
+
+  const getQueryTypeLabel = () => {
+    const selected = queryTypes.find(type => type.value === formData.typeOfQuery);
+    return selected ? selected.label : 'Select...';
   };
 
   const toggleInterest = (interest: string) => {
@@ -32,7 +71,7 @@ const ContactUs: React.FC = () => {
     e.preventDefault();
     console.log('Form submitted:', { ...formData, interests: selectedInterests });
     alert('Thank you for your message! We will get back to you soon.');
-    setFormData({ name: '', email: '', projectBrief: '' });
+    setFormData({ name: '', email: '', typeOfQuery: '', projectBrief: '' });
     setSelectedInterests(['NEXTGEN']);
   };
 
@@ -72,20 +111,55 @@ const ContactUs: React.FC = () => {
                 required
               />
             </div>
-            <div className="form-group">
-              <label className="form-label">Email Address</label>
-              <input
-                type="email"
-                name="email"
-                className="form-input-large"
-                placeholder="john@example.com"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
+            <div className="form-row">
+              <div className="form-group">
+                <label className="form-label">Email Address</label>
+                <input
+                  type="email"
+                  name="email"
+                  className="form-input-large"
+                  placeholder="john@example.com"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Type of Query</label>
+                <div className="custom-dropdown" ref={dropdownRef}>
+                  <button
+                    type="button"
+                    className={`custom-dropdown-toggle ${formData.typeOfQuery ? 'has-value' : ''} ${isDropdownOpen ? 'open' : ''}`}
+                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  >
+                    <span>{getQueryTypeLabel()}</span>
+                    <span className="dropdown-arrow">▼</span>
+                  </button>
+                  {isDropdownOpen && (
+                    <div className="custom-dropdown-menu">
+                      {queryTypes.map((type) => (
+                        <button
+                          key={type.value}
+                          type="button"
+                          className={`custom-dropdown-option ${formData.typeOfQuery === type.value ? 'selected' : ''}`}
+                          onClick={() => handleQueryTypeSelect(type.value)}
+                        >
+                          {type.label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  <input
+                    type="hidden"
+                    name="typeOfQuery"
+                    value={formData.typeOfQuery}
+                    required
+                  />
+                </div>
+              </div>
             </div>
             <div className="form-group">
-              <label className="form-label">I'm interested in</label>
+              <label className="form-label">Related to</label>
               <div className="interest-chips">
                 {interests.map((interest) => (
                   <button
