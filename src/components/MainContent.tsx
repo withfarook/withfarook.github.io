@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { gsap } from '../utils/gsapLoader';
 
 const MainContent: React.FC = () => {
+  const location = useLocation();
   const withFarookRef = useRef<HTMLDivElement>(null);
   const subBrandRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -26,15 +28,15 @@ const MainContent: React.FC = () => {
       scale: 0.9
     });
 
-    // Initialize hexagons as hidden
+    // Initialize sub-brands container as hidden
     gsap.set(hexagonsRef.current, {
       opacity: 0,
       y: 30
     });
 
-    // Initialize individual hexagons
-    const hexagonElements = hexagonsRef.current.children;
-    gsap.set(hexagonElements, {
+    // Initialize individual sub-brand items
+    const subbrandElements = hexagonsRef.current.children;
+    gsap.set(subbrandElements, {
       opacity: 0,
       scale: 0.8,
       y: 20
@@ -160,7 +162,7 @@ const MainContent: React.FC = () => {
       ease: "back.out(1.2)"
     }, finalMessageStartTime + 0.3);
 
-    // Show hexagons container at the same time as "Let's do it"
+    // Show sub-brands container at the same time as "Let's do it"
     masterTL.to(hexagonsRef.current, {
       opacity: 1,
       y: 0,
@@ -169,8 +171,8 @@ const MainContent: React.FC = () => {
       ease: "power2.out"
     }, finalMessageStartTime + 0.3);
 
-    // Animate individual hexagons with stagger (starting at the same time)
-    masterTL.to(hexagonElements, {
+    // Animate individual sub-brand items with stagger (starting at the same time)
+    masterTL.to(subbrandElements, {
       opacity: 1,
       scale: 1,
       y: 0,
@@ -196,6 +198,13 @@ const MainContent: React.FC = () => {
 
   return (
     <div className="app" ref={containerRef}>
+      <header className="header-bar">
+        <div style={{ width: '200px', minWidth: '200px' }}></div>
+        <nav className="header-nav">
+          <Link to="/about" className={`nav-link ${location.pathname === '/about' ? 'active' : ''}`}>About</Link>
+          <Link to="/contact-us" className={`nav-link ${location.pathname === '/contact-us' ? 'active' : ''}`}>Contact Us</Link>
+        </nav>
+      </header>
       <div className="content">
         <div className="main-text">
           <div className="with-farook" ref={withFarookRef}>
@@ -203,15 +212,10 @@ const MainContent: React.FC = () => {
           </div>
           <div className="sub-brand" ref={subBrandRef}></div>
         </div>
-        <div className="hexagons-container" ref={hexagonsRef}>
+        <div className="subbrands-container" ref={hexagonsRef}>
           {subBrands.map((brand, index) => (
-            <div key={index} className="hexagon-wrapper">
-              <div className="hexagon">
-                <svg className="hexagon-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-                  <polygon points="50,0 100,25 100,75 50,100 0,75 0,25" fill="none" stroke="#ffbd59" strokeWidth="3" />
-                </svg>
-                <div className="hexagon-text">{brand}</div>
-              </div>
+            <div key={index} className="subbrand-item">
+              {brand}
             </div>
           ))}
         </div>

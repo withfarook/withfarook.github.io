@@ -1,9 +1,12 @@
 import React, { Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './fonts.css';
 import './App.css';
 
-// Lazy load the main content component
+// Lazy load components
 const MainContent = React.lazy(() => import('./components/MainContent'));
+const About = React.lazy(() => import('./components/About'));
+const ContactUs = React.lazy(() => import('./components/ContactUs'));
 
 // Loading component
 const LoadingFallback: React.FC = () => (
@@ -20,9 +23,15 @@ const LoadingFallback: React.FC = () => (
 
 const App: React.FC = () => {
   return (
-    <Suspense fallback={<LoadingFallback />}>
-      <MainContent />
-    </Suspense>
+    <Router>
+      <Suspense fallback={<LoadingFallback />}>
+        <Routes>
+          <Route path="/" element={<MainContent />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact-us" element={<ContactUs />} />
+        </Routes>
+      </Suspense>
+    </Router>
   );
 };
 

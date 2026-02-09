@@ -102,6 +102,10 @@ module.exports = (env, argv) => {
         type: 'asset/resource',
       },
       {
+        test: /\.(png|jpg|jpeg|gif|webp)$/,
+        type: 'asset/resource',
+      },
+      {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         type: 'asset/resource',
       },
@@ -138,6 +142,7 @@ module.exports = (env, argv) => {
     },
     compress: true,
     port: 3101,
+    historyApiFallback: true,
   },
   };
 }; 
