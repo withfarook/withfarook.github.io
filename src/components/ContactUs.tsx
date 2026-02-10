@@ -10,7 +10,7 @@ const ContactUs: React.FC = () => {
     typeOfQuery: '',
     projectBrief: ''
   });
-  const [selectedInterests, setSelectedInterests] = useState<string[]>(['NEXTGEN']);
+  const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -72,7 +72,7 @@ const ContactUs: React.FC = () => {
     console.log('Form submitted:', { ...formData, interests: selectedInterests });
     alert('Thank you for your message! We will get back to you soon.');
     setFormData({ name: '', email: '', typeOfQuery: '', projectBrief: '' });
-    setSelectedInterests(['NEXTGEN']);
+    setSelectedInterests([]);
   };
 
   return (
@@ -95,7 +95,7 @@ const ContactUs: React.FC = () => {
               LET'S TALK
             </h1>
             <p className="contact-subtitle">
-              Ready to elevate your digital presence? We're currently accepting new commissions for 2024.
+              Ready to build something amazing together.
             </p>
           </div>
           <form className="contact-form" onSubmit={handleSubmit}>

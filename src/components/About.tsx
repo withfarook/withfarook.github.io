@@ -24,7 +24,7 @@ const About: React.FC = () => {
             <div className="about-image" style={{ backgroundImage: `url(${farookImage})` }}>
             <div className="about-image-overlay">
               <p className="about-image-name">Farook</p>
-              <p className="about-image-label">Founder</p>
+              <p className="about-image-label">The Chief</p>
             </div>
             </div>
           </div>
