@@ -31,33 +31,23 @@ const About: React.FC = () => {
           <div className="about-hero-content">
             <div className="about-hero-header">
               <h1 className="about-hero-title">
-                WHO WE<br/>ARE
+                WHO ARE<br/>WE
               </h1>
               <div className="about-hero-divider"></div>
             </div>
             <div className="about-hero-text">
               <p className="about-hero-lead">
-                We are a boutique <span className="about-hero-accent">creative engine</span> fueled by minimalism and high-octane storytelling.
+                withFarook is more than a personal portfolio—it's a commitment to the community that helped me grow.
               </p>
               <div className="about-hero-description">
                 <p>
-                  Founded on the principle that complexity is the enemy of impact, withFarook crafts digital identities that don't just exist—they command space. We believe that every pixel should serve a purpose and every brand should have a heartbeat.
+                  I'm passionate about nurturing future tech talent, sharing knowledge, and creating opportunities for the next generation of builders and innovators.
                 </p>
+                <p>But it's not just about teaching; it's about listening.</p>
                 <p>
-                  Our approach is deeply collaborative. We don't work <span className="about-text-white">for</span> clients; we work <span className="about-text-primary">with</span> them to uncover the raw, authentic narrative that makes their business indispensable.
+                  
+                  I love hearing the stories of people I meet—their challenges, their dreams, their unique perspectives—and helping bring their ideas to life.
                 </p>
-              </div>
-            </div>
-            <div className="about-features-grid">
-              <div className="about-feature-card">
-                <span className="material-symbols-outlined about-feature-icon">lightbulb</span>
-                <h3 className="about-feature-title">Visionary Strategy</h3>
-                <p className="about-feature-text">Mapping out future-proof trajectories for brands that refuse to settle for the status quo.</p>
-              </div>
-              <div className="about-feature-card">
-                <span className="material-symbols-outlined about-feature-icon">auto_awesome</span>
-                <h3 className="about-feature-title">Bold Aesthetics</h3>
-                <p className="about-feature-text">Visual systems designed to stop the scroll and leave a lasting psychological imprint.</p>
               </div>
             </div>
           </div>
