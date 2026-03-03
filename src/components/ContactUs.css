@@ -1,3 +1,4 @@
+/* ─── Contact Page Shell ─────────────────────────────────────── */
 .contact-page {
   min-height: 100vh;
   background: #000;
@@ -7,12 +8,11 @@
   overflow-x: hidden;
 }
 
+/* ─── Main Content ───────────────────────────────────────────── */
 .contact-main {
   flex: 1;
-  padding-top: 100px;
-  padding-bottom: 40px;
-  padding-left: 32px;
-  padding-right: 32px;
+  /* 325px base: header ≈ 50px, give 18px breathing room */
+  padding: 68px 16px 24px;
   position: relative;
   box-sizing: border-box;
 }
@@ -29,45 +29,49 @@
   background: radial-gradient(circle at center, rgba(255, 189, 89, 0.08) 0%, transparent 70%);
 }
 
+/* ─── Container: max 1200px, centred; capped at 1440px viewport ─ */
 .contact-container {
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
 }
 
+/* ─── Header Block ───────────────────────────────────────────── */
 .contact-header {
-  margin-bottom: 30px;
+  margin-bottom: 18px;
 }
 
 .contact-title {
   font-family: 'League Spartan', sans-serif;
   color: #ffbd59;
-  font-size: 2.5rem;
+  font-size: 1.6rem;
   font-weight: 900;
-  line-height: 0.8;
+  line-height: 0.85;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  margin: 0 0 12px 0;
+  margin: 0 0 8px 0;
 }
 
 .contact-subtitle {
   font-family: 'League Spartan', sans-serif;
   color: #888888;
-  font-size: 0.9rem;
+  font-size: 0.78rem;
   font-weight: 300;
   max-width: 512px;
   margin: 0;
 }
 
+/* ─── Form ───────────────────────────────────────────────────── */
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 18px;
 }
 
 .form-row {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 30px;
+  gap: 18px;
 }
 
 .form-group {
@@ -78,11 +82,11 @@
 .form-label {
   font-family: 'League Spartan', sans-serif;
   color: #ffbd59;
-  font-size: 0.65rem;
+  font-size: 0.58rem;
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 0.3em;
-  margin-bottom: 8px;
+  letter-spacing: 0.28em;
+  margin-bottom: 6px;
 }
 
 .form-input-large,
@@ -91,18 +95,17 @@
   width: 100%;
   background: transparent;
   border: none;
-  border-top: none;
-  border-left: none;
-  border-right: none;
   border-bottom: 0.5px solid rgba(255, 189, 89, 0.3);
-  padding: 12px 0;
+  padding: 8px 0;
   font-family: 'League Spartan', sans-serif;
-  font-size: 1.2rem;
+  font-size: 0.95rem;
   font-weight: 300;
   color: #fff;
   transition: all 0.5s ease;
+  box-sizing: border-box;
 }
 
+/* ─── Custom Dropdown ────────────────────────────────────────── */
 .custom-dropdown {
   position: relative;
   width: 100%;
@@ -112,13 +115,10 @@
   width: 100%;
   background: transparent;
   border: none;
-  border-top: none;
-  border-left: none;
-  border-right: none;
   border-bottom: 0.5px solid rgba(255, 189, 89, 0.3);
-  padding: 12px 0;
+  padding: 8px 0;
   font-family: 'League Spartan', sans-serif;
-  font-size: 1.2rem;
+  font-size: 0.95rem;
   font-weight: 300;
   color: #fff;
   cursor: pointer;
@@ -127,6 +127,7 @@
   align-items: center;
   transition: all 0.5s ease;
   text-align: left;
+  box-sizing: border-box;
 }
 
 .custom-dropdown-toggle:focus {
@@ -144,9 +145,10 @@
 
 .dropdown-arrow {
   color: #ffbd59;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   transition: transform 0.3s ease;
-  margin-left: 12px;
+  margin-left: 10px;
+  flex-shrink: 0;
 }
 
 .custom-dropdown-toggle.open .dropdown-arrow {
@@ -164,24 +166,25 @@
   border-radius: 0 0 8px 8px;
   z-index: 1000;
   margin-top: 1px;
-  max-height: 300px;
+  max-height: 240px;
   overflow-y: auto;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 .custom-dropdown-option {
   width: 100%;
-  padding: 16px 12px;
+  padding: 12px 10px;
   background: transparent;
   border: none;
   border-bottom: 1px solid rgba(255, 189, 89, 0.1);
   font-family: 'League Spartan', sans-serif;
-  font-size: 1.2rem;
+  font-size: 0.95rem;
   font-weight: 300;
   color: #888888;
   text-align: left;
   cursor: pointer;
   transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
 .custom-dropdown-option:last-child {
@@ -199,6 +202,7 @@
   font-weight: 500;
 }
 
+/* ─── Inputs: focus / placeholder ───────────────────────────── */
 .form-input-large::placeholder,
 .form-textarea-large::placeholder {
   color: rgba(255, 255, 255, 0.1);
@@ -213,27 +217,28 @@
 
 .form-textarea-large {
   resize: none;
-  min-height: 60px;
-  max-height: 80px;
+  min-height: 50px;
+  max-height: 70px;
 }
 
+/* ─── Interest Chips ─────────────────────────────────────────── */
 .interest-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 12px;
+  gap: 8px;
+  margin-top: 10px;
 }
 
 .interest-chip {
-  padding: 8px 20px;
+  padding: 6px 14px;
   border: 1px solid #ffbd59;
   background: transparent;
   color: #ffbd59;
   font-family: 'League Spartan', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   border-radius: 9999px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -249,20 +254,21 @@
   color: #000;
 }
 
+/* ─── Submit ─────────────────────────────────────────────────── */
 .form-submit-group {
   display: flex;
   justify-content: flex-end;
-  padding-top: 20px;
+  padding-top: 12px;
 }
 
 .submit-button-simple {
-  padding: 12px 32px;
+  padding: 10px 24px;
   background: transparent;
   border: 1px solid #ffbd59;
   border-radius: 8px;
   color: #ffbd59;
   font-family: 'League Spartan', sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -275,47 +281,42 @@
   color: #000;
 }
 
+/* ─── Footer ─────────────────────────────────────────────────── */
 .contact-footer {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 24px 32px;
+  padding: 16px;
   background: #000;
 }
 
 .contact-footer-content {
-  max-width: 1600px;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  justify-content: space-between;
+  gap: 12px;
   align-items: center;
-}
-
-@media (min-width: 768px) {
-  .contact-footer-content {
-    flex-direction: row;
-  }
 }
 
 .contact-footer-copyright {
   font-family: 'League Spartan', sans-serif;
   color: #888888;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
+  text-align: center;
 }
 
 .contact-footer-links {
   display: flex;
-  gap: 32px;
+  gap: 24px;
 }
 
 .contact-footer-link {
   font-family: 'League Spartan', sans-serif;
   color: #888888;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -324,41 +325,318 @@
   color: #fff;
 }
 
-@media (min-width: 768px) {
+/* ─── Override inline logo-link width on small screens ──────── */
+@media (max-width: 479px) {
+  .contact-page .logo-link {
+    width: auto !important;
+    min-width: auto !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BREAKPOINTS — mobile-first, 325px → 1440px+
+   ═══════════════════════════════════════════════════════════════ */
+
+/* 480px — mid-size phones */
+@media (min-width: 480px) {
   .contact-main {
-    padding-left: 80px;
-    padding-right: 80px;
-    padding-top: 100px;
-    padding-bottom: 40px;
+    /* header ≈ 55px */
+    padding: 74px 20px 28px;
+  }
+
+  .contact-header {
+    margin-bottom: 22px;
   }
 
   .contact-title {
-    font-size: 3rem;
+    font-size: 2rem;
+    margin-bottom: 10px;
   }
 
   .contact-subtitle {
-    font-size: 1rem;
+    font-size: 0.82rem;
+  }
+
+  .contact-form {
+    gap: 22px;
+  }
+
+  .form-row {
+    gap: 22px;
+  }
+
+  .form-label {
+    font-size: 0.6rem;
+  }
+
+  .form-input-large,
+  .form-textarea-large,
+  .form-select-large {
+    font-size: 1.05rem;
+    padding: 9px 0;
+  }
+
+  .custom-dropdown-toggle {
+    font-size: 1.05rem;
+    padding: 9px 0;
+  }
+
+  .custom-dropdown-option {
+    font-size: 1.05rem;
+    padding: 13px 10px;
+  }
+
+  .form-textarea-large {
+    min-height: 52px;
+    max-height: 72px;
+  }
+
+  .interest-chip {
+    padding: 7px 16px;
+    font-size: 0.67rem;
+  }
+
+  .submit-button-simple {
+    padding: 10px 26px;
+    font-size: 0.82rem;
+  }
+
+  .contact-footer {
+    padding: 18px 20px;
+  }
+
+  .contact-footer-copyright,
+  .contact-footer-link {
+    font-size: 0.68rem;
+  }
+}
+
+/* 640px — large phones / small tablets */
+@media (min-width: 640px) {
+  .contact-main {
+    padding: 78px 28px 30px;
+  }
+
+  .contact-title {
+    font-size: 2.2rem;
+  }
+
+  .contact-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .form-input-large,
+  .form-textarea-large,
+  .form-select-large {
+    font-size: 1.15rem;
+  }
+
+  .custom-dropdown-toggle {
+    font-size: 1.15rem;
+  }
+
+  .custom-dropdown-option {
+    font-size: 1.15rem;
+  }
+
+  .interest-chips {
+    gap: 10px;
+  }
+
+  .interest-chip {
+    padding: 7px 18px;
+    font-size: 0.68rem;
+  }
+}
+
+/* 768px — tablets; header drops to 70px, form goes 2-col */
+@media (min-width: 768px) {
+  .contact-main {
+    padding: 96px 48px 36px;
+  }
+
+  .contact-header {
+    margin-bottom: 26px;
+  }
+
+  .contact-title {
+    font-size: 2.8rem;
+    margin-bottom: 12px;
+  }
+
+  .contact-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .contact-form {
+    gap: 26px;
   }
 
   .form-row {
     grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .form-label {
+    font-size: 0.62rem;
+    margin-bottom: 8px;
+  }
+
+  .form-input-large,
+  .form-textarea-large,
+  .form-select-large {
+    font-size: 1.25rem;
+    padding: 10px 0;
+  }
+
+  .custom-dropdown-toggle {
+    font-size: 1.25rem;
+    padding: 10px 0;
+  }
+
+  .custom-dropdown-option {
+    font-size: 1.25rem;
+    padding: 14px 12px;
+  }
+
+  .custom-dropdown-menu {
+    max-height: 280px;
+  }
+
+  .form-textarea-large {
+    min-height: 56px;
+    max-height: 76px;
+  }
+
+  .interest-chips {
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .interest-chip {
+    padding: 8px 20px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+  }
+
+  .form-submit-group {
+    padding-top: 16px;
+  }
+
+  .submit-button-simple {
+    padding: 11px 30px;
+    font-size: 0.88rem;
+  }
+
+  .contact-footer {
+    padding: 22px 48px;
+  }
+
+  .contact-footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .contact-footer-copyright,
+  .contact-footer-link {
+    font-size: 0.72rem;
+  }
+
+  .contact-footer-links {
+    gap: 28px;
+  }
+}
+
+/* 1024px — small desktops; header 80px */
+@media (min-width: 1024px) {
+  .contact-main {
+    padding: 108px 80px 40px;
+  }
+
+  .contact-header {
+    margin-bottom: 30px;
+  }
+
+  .contact-title {
+    font-size: 3.2rem;
+  }
+
+  .contact-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .contact-form {
+    gap: 30px;
+  }
+
+  .form-row {
     gap: 40px;
+  }
+
+  .form-label {
+    font-size: 0.65rem;
   }
 
   .form-input-large,
   .form-textarea-large,
   .form-select-large {
     font-size: 1.4rem;
+    padding: 12px 0;
+  }
+
+  .custom-dropdown-toggle {
+    font-size: 1.4rem;
+    padding: 12px 0;
+  }
+
+  .custom-dropdown-option {
+    font-size: 1.4rem;
+    padding: 15px 12px;
+  }
+
+  .custom-dropdown-menu {
+    max-height: 300px;
+  }
+
+  .form-textarea-large {
+    min-height: 60px;
+    max-height: 80px;
+  }
+
+  .form-submit-group {
+    padding-top: 20px;
+  }
+
+  .submit-button-simple {
+    padding: 12px 32px;
+    font-size: 0.9rem;
+  }
+
+  .contact-footer {
+    padding: 24px 80px;
+  }
+
+  .contact-footer-copyright,
+  .contact-footer-link {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+
+  .contact-footer-links {
+    gap: 32px;
   }
 }
 
-@media (min-width: 1024px) {
+/* 1280px — standard desktops */
+@media (min-width: 1280px) {
   .contact-title {
     font-size: 3.5rem;
   }
 
   .form-input-large,
-  .form-textarea-large {
+  .form-textarea-large,
+  .form-select-large {
     font-size: 1.5rem;
   }
 
@@ -371,57 +649,45 @@
   }
 }
 
-@media (max-width: 767px) {
+/* 1440px+ — cap content; layout stays constant */
+@media (min-width: 1440px) {
   .contact-main {
-    padding-top: 90px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 30px;
+    /* Switch to calc-based padding so the container stays centred */
+    padding-left: max(80px, calc((100vw - 1440px) / 2 + 80px));
+    padding-right: max(80px, calc((100vw - 1440px) / 2 + 80px));
+  }
+
+  .contact-footer {
+    padding-left: max(80px, calc((100vw - 1440px) / 2 + 80px));
+    padding-right: max(80px, calc((100vw - 1440px) / 2 + 80px));
+  }
+}
+
+/* ─── Landscape phones (short height) ───────────────────────── */
+@media (max-height: 500px) and (orientation: landscape) {
+  .contact-main {
+    padding-top: 58px;
+    padding-bottom: 16px;
   }
 
   .contact-header {
-    margin-bottom: 20px;
+    margin-bottom: 12px;
   }
 
   .contact-title {
-    font-size: 2rem;
-  }
-
-  .contact-subtitle {
-    font-size: 0.85rem;
+    font-size: 1.5rem;
   }
 
   .contact-form {
-    gap: 24px;
-  }
-
-  .form-row {
-    gap: 24px;
-  }
-
-  .form-input-large,
-  .form-textarea-large {
-    font-size: 1.1rem;
-    padding: 10px 0;
-  }
-
-  .custom-dropdown-toggle {
-    font-size: 1.1rem;
-    padding: 10px 0;
-  }
-
-  .custom-dropdown-option {
-    font-size: 1.1rem;
-    padding: 12px 10px;
+    gap: 14px;
   }
 
   .form-textarea-large {
-    min-height: 50px;
-    max-height: 70px;
+    min-height: 42px;
+    max-height: 56px;
   }
 
-  .submit-button-simple {
-    padding: 10px 24px;
-    font-size: 0.85rem;
+  .form-submit-group {
+    padding-top: 8px;
   }
 }

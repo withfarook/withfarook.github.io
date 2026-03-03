@@ -122,6 +122,7 @@ module.exports = (env, argv) => {
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
+      favicon: './public/withFarook.png',
     }),
     ...(process.env.ANALYZE === 'true' ? [
       new BundleAnalyzerPlugin({

@@ -196,11 +196,10 @@ const ContactUs: React.FC = () => {
       <footer className="contact-footer">
         <div className="contact-footer-content">
           <div className="contact-footer-copyright">
-            © 2024 WITHFAROOK AGENCY. ALL RIGHTS RESERVED.
+            © 2026 WITHFAROOK. ALL RIGHTS RESERVED.
           </div>
           <div className="contact-footer-links">
             <a href="#" className="contact-footer-link">Instagram</a>
-            <a href="#" className="contact-footer-link">Behance</a>
             <a href="#" className="contact-footer-link">LinkedIn</a>
           </div>
         </div>

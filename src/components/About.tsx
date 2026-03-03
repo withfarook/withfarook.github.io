@@ -57,11 +57,13 @@ const About: React.FC = () => {
           <div className="about-ecosystem-header">
             <div className="about-ecosystem-title-section">
               <h2 className="about-ecosystem-title">OUR ECOSYSTEM</h2>
-              <p className="about-ecosystem-subtitle">Specialized verticals working in synergy to provide a comprehensive 360° creative solution for modern industry leaders.</p>
-            </div>
-            <div className="about-ecosystem-divider"></div>
-            <div className="about-ecosystem-label">
-              <span>Verticals 01-04</span>
+              <div className="about-ecosystem-tagline-container">
+                <p className="about-ecosystem-tagline">Let's do it <span className="about-ecosystem-cursive-tagline">withFarook</span></p>
+                <div className="about-ecosystem-divider"></div>
+                <div className="about-ecosystem-label">
+                  <span>Verticals 01-04</span>
+                </div>
+              </div>
             </div>
           </div>
           <div className="about-ecosystem-grid">
@@ -71,7 +73,7 @@ const About: React.FC = () => {
               </div>
               <div className="about-ecosystem-card-content">
                 <h3 className="about-ecosystem-card-title">CODE <span className="about-ecosystem-cursive">withFarook</span></h3>
-                <p className="about-ecosystem-card-text">Bespoke software and high-end technical architecture.</p>
+                <p className="about-ecosystem-card-text">Bespoke software and high-end technical architecture, explained.</p>
               </div>
             </div>
             <div className="about-ecosystem-card">
@@ -80,7 +82,11 @@ const About: React.FC = () => {
               </div>
               <div className="about-ecosystem-card-content">
                 <h3 className="about-ecosystem-card-title">NEXTGEN <span className="about-ecosystem-cursive">withFarook</span></h3>
-                <p className="about-ecosystem-card-text">Incubating innovation and future-tech methodologies.</p>
+                <p className="about-ecosystem-card-text">
+                  Nurturing next-gen <br /> tech talents. <br />
+                  for better tomorrow.
+                  
+                </p>
               </div>
             </div>
             <div className="about-ecosystem-card">
@@ -89,7 +95,7 @@ const About: React.FC = () => {
               </div>
               <div className="about-ecosystem-card-content">
                 <h3 className="about-ecosystem-card-title">BRAND <span className="about-ecosystem-cursive">withFarook</span></h3>
-                <p className="about-ecosystem-card-text">Visual identity and architectural brand philosophy.</p>
+                <p className="about-ecosystem-card-text">Bringing brands to people, creating movements.</p>
               </div>
             </div>
             <div className="about-ecosystem-card">
@@ -98,7 +104,7 @@ const About: React.FC = () => {
               </div>
               <div className="about-ecosystem-card-content">
                 <h3 className="about-ecosystem-card-title">STORIES <span className="about-ecosystem-cursive">withFarook</span></h3>
-                <p className="about-ecosystem-card-text">Narrative content production and digital storytelling.</p>
+                <p className="about-ecosystem-card-text">Amplifying voices, transforming lives through storytelling.</p>
               </div>
             </div>
           </div>
@@ -107,11 +113,10 @@ const About: React.FC = () => {
       <footer className="about-footer">
         <div className="about-footer-content">
           <div className="about-footer-copyright">
-            © 2024 WITHFAROOK AGENCY. ALL RIGHTS RESERVED.
+            © 2026 WITHFAROOK. ALL RIGHTS RESERVED.
           </div>
           <div className="about-footer-links">
             <a href="#" className="about-footer-link">Instagram</a>
-            <a href="#" className="about-footer-link">Behance</a>
             <a href="#" className="about-footer-link">LinkedIn</a>
           </div>
         </div>

@@ -20,6 +20,58 @@ html, body {
   overflow-x: hidden;
 }
 
+/* Custom scrollbar styling - visible and styled */
+html {
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 189, 89, 0.3);
+  border-radius: 4px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 189, 89, 0.5);
+  background-clip: padding-box;
+}
+
+/* Overlay to make scrollbar appear above header */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 80px;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 101; /* Above header z-index of 100 */
+  pointer-events: none;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 189, 89, 0.3) #000;
+}
+
+/* Ensure scrollbar appears below fixed header by adjusting body padding */
+body {
+  padding-top: 0;
+}
+
 .app {
   min-height: 100vh;
   width: 100vw;
@@ -132,24 +184,22 @@ html, body {
 
 .with-farook {
   font-family: 'Amoresa', serif;
-  font-size: 12vw;
+  font-size: 10vw; /* pre-load fallback — JS overrides immediately */
   font-weight: 700;
   color: #ffbd59;
   text-shadow: 0 0 30px rgba(255, 189, 89, 0.3);
   letter-spacing: 2px;
   opacity: 0;
   transform: translateY(50px);
-  width: 80vw;
+  white-space: nowrap;
   text-align: center;
   line-height: 0.9;
 }
 
 .sub-brand {
   position: absolute;
-  top: -80px;
-  left: 20%;
+  /* top / left / font-size are set by JS (fitText) to stay relative to withFarook */
   font-family: 'League Spartan', sans-serif;
-  font-size: 4rem;
   font-weight: 700;
   color: #888888;
   text-transform: uppercase;
@@ -217,16 +267,6 @@ html, body {
 }
 
 @media (max-width: 1024px) {
-  .with-farook {
-    font-size: 11vw;
-  }
-
-  .sub-brand {
-    font-size: 3.2vw;
-    top: -6vw;
-    left: 15%;
-  }
-
   .header-bar {
     padding: 18px 30px;
     min-height: 70px;
@@ -257,21 +297,6 @@ html, body {
 }
 
 @media (max-width: 768px) {
-  .with-farook {
-    font-size: 10vw;
-    width: 85vw;
-  }
-  
-  .sub-brand {
-    font-size: 2.9vw;
-    top: -5.5vw;
-    left: 15%;
-    font-family: 'League Spartan', sans-serif;
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-    will-change: transform, opacity;
-  }
-
   .header-bar {
     padding: 15px 20px;
     min-height: 60px;
@@ -304,17 +329,6 @@ html, body {
 }
 
 @media (max-width: 600px) {
-  .with-farook {
-    font-size: 9vw;
-    width: 90vw;
-  }
-
-  .sub-brand {
-    font-size: 2.6vw;
-    top: -5vw;
-    left: 15%;
-  }
-
   .subbrands-container {
     top: calc(50% + 60px);
     gap: 20px;
@@ -329,26 +343,15 @@ html, body {
 }
 
 @media (max-width: 480px) {
-  .with-farook {
-    font-size: 8vw;
-    width: 90vw;
-    letter-spacing: 1px;
-  }
-  
-  .sub-brand {
-    font-size: 2.3vw;
-    top: -4.5vw;
-    left: 12%;
-    font-family: 'League Spartan', sans-serif;
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-    will-change: transform, opacity;
-  }
-
   .header-bar {
     padding: 12px 15px;
     min-height: 55px;
     height: 55px;
+    justify-content: flex-end;
+  }
+
+  .header-spacer {
+    display: none;
   }
 
   .logo-text {
@@ -379,20 +382,11 @@ html, body {
 }
 
 @media (max-width: 360px) {
-  .with-farook {
-    font-size: 7.5vw;
-  }
-
-  .sub-brand {
-    font-size: 2.2vw;
-    top: -4vw;
-    left: 12%;
-  }
-
   .header-bar {
     padding: 10px 12px;
     min-height: 50px;
     height: 50px;
+    justify-content: flex-end;
   }
 
   .logo-text {
@@ -419,16 +413,6 @@ html, body {
 }
 
 @media (max-height: 600px) and (orientation: landscape) {
-  .with-farook {
-    font-size: 8vw;
-  }
-
-  .sub-brand {
-    font-size: 2.3vw;
-    top: -4.5vw;
-    left: 15%;
-  }
-
   .subbrands-container {
     top: calc(50% + 40px);
     gap: 15px;

@@ -21,6 +21,33 @@ const MainContent: React.FC = () => {
   useEffect(() => {
     if (!withFarookRef.current || !subBrandRef.current || !hexagonsRef.current) return;
 
+    // Fit "withFarook" to fill the viewport width on screens >= 480px.
+    // Below 480px the CSS handles it with 15vw so we leave it alone.
+    const fitText = () => {
+      const el = withFarookRef.current;
+      const sub = subBrandRef.current;
+      if (!el) return;
+
+      // ── withFarook: always 70% wide, frozen above 1080px ──────────────
+      const MAX_WIDTH = Math.round(1080 * 0.70); // 756px
+      const targetWidth = Math.min(window.innerWidth * 0.70, MAX_WIDTH);
+      el.style.fontSize = '200px';              // reference size to measure from
+      const wfFontSize = Math.round(200 * (targetWidth / el.scrollWidth));
+      el.style.fontSize = `${wfFontSize}px`;
+
+      // ── sub-brand: proportional size, left-aligned with withFarook ────
+      if (!sub) return;
+      // Font size ~27% of withFarook (matches original design ratio)
+      sub.style.fontSize = `${Math.round(wfFontSize * 0.27)}px`;
+      // Left edge aligns with the left edge of the centred withFarook text
+      sub.style.left = `${Math.round((window.innerWidth - targetWidth) / 2)}px`;
+      // Float above withFarook — 55% of its font-size as gap
+      sub.style.top = `-${Math.round(wfFontSize * 0.55)}px`;
+    };
+
+    fitText();
+    window.addEventListener('resize', fitText);
+
     // Initialize subbrand as hidden
     gsap.set(subBrandRef.current, {
       opacity: 0,
@@ -193,13 +220,14 @@ const MainContent: React.FC = () => {
     // Cleanup function
     return () => {
       masterTL.kill();
+      window.removeEventListener('resize', fitText);
     };
   }, []);
 
   return (
     <div className="app" ref={containerRef}>
       <header className="header-bar">
-        <div style={{ width: '200px', minWidth: '200px' }}></div>
+        <div className="header-spacer" style={{ width: '200px', minWidth: '200px' }}></div>
         <nav className="header-nav">
           <Link to="/about" className={`nav-link ${location.pathname === '/about' ? 'active' : ''}`}>About</Link>
           <Link to="/contact-us" className={`nav-link ${location.pathname === '/contact-us' ? 'active' : ''}`}>Contact Us</Link>

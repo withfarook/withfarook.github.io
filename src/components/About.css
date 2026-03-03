@@ -2,6 +2,7 @@
   font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
 }
 
+/* ─── Page Shell ─────────────────────────────────────────────── */
 .about-page {
   min-height: 100vh;
   background: #000;
@@ -11,32 +12,39 @@
   overflow-x: hidden;
 }
 
+/* ─── Override inline logo-link width on small screens ──────── */
+@media (max-width: 479px) {
+  .about-page .logo-link {
+    width: auto !important;
+    min-width: auto !important;
+  }
+}
+
+/* ─── Main ───────────────────────────────────────────────────── */
 .about-main {
   flex: 1;
-  padding-top: 100px;
-  padding-bottom: 40px;
-  padding-left: 32px;
-  padding-right: 32px;
-  max-width: 1600px;
-  margin: 0 auto;
+  /* 325px base: header ≈ 50px */
+  padding: 68px 16px 32px;
   width: 100%;
   box-sizing: border-box;
 }
 
+/* ─── Hero Grid ──────────────────────────────────────────────── */
 .about-hero-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 40px;
+  gap: 28px;
   align-items: stretch;
-  margin-bottom: 60px;
+  margin-bottom: 48px;
 }
 
+/* ─── Image ──────────────────────────────────────────────────── */
 .about-image-container {
   position: relative;
   width: 100%;
   aspect-ratio: 4/5;
-  min-height: 550px;
-  max-height: 600px;
+  min-height: 260px;
+  max-height: 340px;
   display: flex;
   align-items: stretch;
 }
@@ -52,8 +60,8 @@
 .about-image {
   width: 100%;
   height: 100%;
-  min-height: 550px;
-  max-height: 600px;
+  min-height: 260px;
+  max-height: 340px;
   background: #181818;
   border-radius: 8px;
   overflow: hidden;
@@ -70,10 +78,10 @@
 
 .about-image-overlay {
   position: absolute;
-  bottom: 16px;
-  left: 16px;
-  right: 16px;
-  padding: 16px;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  padding: 12px;
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(12px);
   border-radius: 6px;
@@ -82,15 +90,15 @@
 
 .about-image-name {
   font-family: 'League Spartan', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: #ffbd59;
-  margin: 0 0 8px 0;
+  margin: 0 0 4px 0;
 }
 
 .about-image-label {
   font-family: 'League Spartan', sans-serif;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -104,10 +112,11 @@
   color: #888888;
 }
 
+/* ─── Hero Content ───────────────────────────────────────────── */
 .about-hero-content {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
   padding-top: 0;
 }
 
@@ -120,7 +129,7 @@
 .about-hero-title {
   font-family: 'League Spartan', sans-serif;
   color: #ffbd59;
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   font-weight: 900;
   line-height: 0.9;
   letter-spacing: -0.02em;
@@ -130,7 +139,7 @@
 
 .about-hero-divider {
   height: 3px;
-  width: 60px;
+  width: 48px;
   background: #ffbd59;
   margin-top: 8px;
 }
@@ -138,15 +147,16 @@
 .about-hero-text {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 .about-hero-lead {
   font-family: 'League Spartan', sans-serif;
   color: #fff;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: 300;
   line-height: 1.5;
+  margin: 0;
 }
 
 .about-hero-accent {
@@ -158,28 +168,22 @@
 .about-hero-description {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .about-hero-description p {
   font-family: 'League Spartan', sans-serif;
   color: #888888;
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   line-height: 1.6;
   font-weight: 400;
   margin: 0;
 }
 
-.about-text-white {
-  color: #fff;
-  font-weight: 500;
-}
+.about-text-white  { color: #fff;    font-weight: 500; }
+.about-text-primary { color: #ffbd59; font-weight: 500; }
 
-.about-text-primary {
-  color: #ffbd59;
-  font-weight: 500;
-}
-
+/* ─── Features Grid (unused in current TSX but keeping for safety) ── */
 .about-features-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -199,14 +203,8 @@
   transition: border-color 0.3s ease;
 }
 
-.about-feature-card:hover {
-  border-color: rgba(255, 189, 89, 0.5);
-}
-
-.about-feature-icon {
-  color: #ffbd59;
-  font-size: 2rem;
-}
+.about-feature-card:hover  { border-color: rgba(255, 189, 89, 0.5); }
+.about-feature-icon        { color: #ffbd59; font-size: 2rem; }
 
 .about-feature-title {
   font-family: 'League Spartan', sans-serif;
@@ -226,72 +224,116 @@
   line-height: 1.4;
 }
 
+/* ─── Ecosystem Section ──────────────────────────────────────── */
 .about-ecosystem {
-  margin-top: 80px;
+  margin-top: 48px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 80px;
+  padding-top: 48px;
 }
 
 .about-ecosystem-header {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  margin-bottom: 64px;
+  gap: 20px;
+  margin-bottom: 32px;
 }
 
 .about-ecosystem-title-section {
-  max-width: 512px;
+  max-width: 100%;
+  width: 100%;
 }
 
 .about-ecosystem-title {
   font-family: 'League Spartan', sans-serif;
   color: #ffbd59;
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: -0.02em;
-  margin: 0 0 16px 0;
+  margin: 0 0 14px 0;
+}
+
+.about-ecosystem-tagline-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 16px;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.about-ecosystem-tagline {
+  font-family: 'League Spartan', sans-serif;
+  color: #888888;
+  font-size: 0.95rem;
+  margin: 0;
+  font-weight: 400;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.about-ecosystem-cursive-tagline {
+  font-family: 'Amoresa', serif;
+  color: #ffbd59;
+  font-style: normal;
+  font-weight: 400;
+  text-transform: none;
+  margin-left: 0.3em;
 }
 
 .about-ecosystem-subtitle {
   font-family: 'League Spartan', sans-serif;
   color: #888888;
-  font-size: 1.125rem;
+  font-size: 0.95rem;
   margin: 0;
 }
 
 .about-ecosystem-divider {
-  display: none;
+  display: none; /* hidden on mobile, shown at 640px+ */
   height: 1px;
   flex: 1;
-  background: rgba(255, 255, 255, 0.1);
-  margin: 0 48px 16px 48px;
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  background: rgba(255, 255, 255, 0.3) !important;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  align-self: center;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .about-ecosystem-label {
   text-align: right;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-left: auto !important;
+  order: 3;
+  position: relative;
+  right: 0;
 }
 
 .about-ecosystem-label span {
   font-family: 'League Spartan', sans-serif;
   color: #ffbd59;
   font-weight: 700;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.25em;
 }
 
+/* ─── Ecosystem Cards ────────────────────────────────────────── */
 .about-ecosystem-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 24px;
+  gap: 16px;
 }
 
 .about-ecosystem-card {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 32px;
+  padding: 20px;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -304,12 +346,12 @@
 }
 
 .about-ecosystem-icon-wrapper {
-  margin-bottom: 48px;
+  margin-bottom: 32px;
 }
 
 .about-ecosystem-icon {
   color: rgba(255, 255, 255, 0.4);
-  font-size: 4rem;
+  font-size: 2.5rem;
   transition: color 0.3s ease;
 }
 
@@ -324,11 +366,14 @@
 .about-ecosystem-card-title {
   font-family: 'League Spartan', sans-serif;
   color: #ffbd59;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: -0.02em;
   margin: 0 0 8px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .about-ecosystem-cursive {
@@ -336,56 +381,62 @@
   font-weight: 400;
   text-transform: none;
   font-style: normal;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   margin-left: 0.5em;
 }
 
 .about-ecosystem-card-text {
   font-family: 'League Spartan', sans-serif;
   color: #888888;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   line-height: 1.6;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   font-weight: 500;
   margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: calc(1.6em * 3);
 }
 
+/* ─── Footer ─────────────────────────────────────────────────── */
 .about-footer {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 24px 32px;
+  padding: 16px;
   background: #000;
 }
 
 .about-footer-content {
-  max-width: 1600px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  justify-content: space-between;
+  gap: 12px;
   align-items: center;
 }
 
 .about-footer-copyright {
   font-family: 'League Spartan', sans-serif;
   color: #888888;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
+  text-align: center;
 }
 
 .about-footer-links {
   display: flex;
-  gap: 32px;
+  gap: 24px;
 }
 
 .about-footer-link {
   font-family: 'League Spartan', sans-serif;
   color: #888888;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -394,96 +445,32 @@
   color: #fff;
 }
 
-@media (min-width: 768px) {
-  .about-footer-content {
-    flex-direction: row;
-  }
-}
+/* ═══════════════════════════════════════════════════════════════
+   BREAKPOINTS — 325px → 1440px+
+   ═══════════════════════════════════════════════════════════════ */
 
-@media (min-width: 768px) {
+/* 480px — mid-size phones */
+@media (min-width: 480px) {
   .about-main {
-    padding-left: 80px;
-    padding-right: 80px;
-    padding-top: 100px;
-    padding-bottom: 40px;
+    padding: 74px 20px 36px;
   }
 
-  .about-hero-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: start;
+  .about-image-container,
+  .about-image {
+    min-height: 320px;
+    max-height: 420px;
   }
 
-
-  .about-hero-title {
-    font-size: 3.5rem;
+  .about-image-overlay {
+    bottom: 14px;
+    left: 14px;
+    right: 14px;
+    padding: 14px;
   }
 
-  .about-hero-lead {
-    font-size: 1.3rem;
-  }
-
-  .about-hero-description p {
-    font-size: 0.95rem;
-  }
-
-  .about-features-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-
-  .about-ecosystem-header {
-    flex-direction: row;
-    align-items: flex-end;
-  }
-
-  .about-ecosystem-divider {
-    display: block;
-  }
-
-  .about-ecosystem-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .about-footer-content {
-    flex-direction: row;
-  }
-}
-
-@media (min-width: 1024px) {
-  .about-image-container {
-    position: sticky;
-    top: 120px;
-  }
-
-  .about-hero-title {
-    font-size: 4rem;
-  }
-
-  .about-hero-lead {
-    font-size: 1.4rem;
-  }
-
-  .about-hero-description p {
-    font-size: 1rem;
-  }
-
-  .about-ecosystem-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (max-width: 767px) {
-  .about-main {
-    padding-top: 90px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 40px;
-  }
-
-  .about-hero-grid {
-    margin-bottom: 40px;
-    gap: 30px;
+  .about-image-name {
+    font-size: 1.25rem;
+    margin-bottom: 6px;
   }
 
   .about-hero-title {
@@ -498,32 +485,326 @@
     font-size: 0.85rem;
   }
 
-  .about-hero-content {
-    gap: 20px;
-  }
-
   .about-ecosystem {
-    margin-top: 60px;
-    padding-top: 60px;
+    margin-top: 56px;
+    padding-top: 56px;
   }
 
   .about-ecosystem-title {
     font-size: 2rem;
   }
 
-  .about-ecosystem-subtitle {
+  .about-ecosystem-card {
+    padding: 24px;
+  }
+
+  .about-ecosystem-icon {
+    font-size: 3rem;
+  }
+
+  .about-footer {
+    padding: 18px 20px;
+  }
+
+  .about-footer-copyright,
+  .about-footer-link {
+    font-size: 0.68rem;
+  }
+}
+
+/* 640px — show divider, 2-col cards */
+@media (min-width: 640px) {
+  .about-main {
+    padding: 78px 28px 40px;
+  }
+
+  .about-image-container,
+  .about-image {
+    min-height: 380px;
+    max-height: 480px;
+  }
+
+  .about-hero-title {
+    font-size: 2.4rem;
+  }
+
+  .about-ecosystem-tagline-container {
+    flex-wrap: nowrap;
+  }
+
+  .about-ecosystem-divider {
+    display: block;
+    margin: 0 16px;
+  }
+
+  .about-ecosystem-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .about-ecosystem-header {
+    margin-bottom: 40px;
+  }
+}
+
+/* 768px — 2-col hero grid, full tablet layout */
+@media (min-width: 768px) {
+  .about-main {
+    /* header ≈ 70px */
+    padding: 96px 48px 48px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  .about-hero-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+    margin-bottom: 60px;
+  }
+
+  .about-image-container,
+  .about-image {
+    min-height: 430px;
+    max-height: 540px;
+  }
+
+  .about-image-name {
+    font-size: 1.5rem;
+  }
+
+  .about-image-label {
+    font-size: 0.75rem;
+  }
+
+  .about-hero-content {
+    gap: 24px;
+  }
+
+  .about-hero-title {
+    font-size: 3rem;
+  }
+
+  .about-hero-lead {
+    font-size: 1.2rem;
+  }
+
+  .about-hero-description p {
+    font-size: 0.9rem;
+  }
+
+  .about-ecosystem {
+    margin-top: 72px;
+    padding-top: 72px;
+  }
+
+  .about-ecosystem-header {
+    margin-bottom: 48px;
+    gap: 24px;
+  }
+
+  .about-ecosystem-title {
+    font-size: 2.5rem;
+  }
+
+  .about-ecosystem-tagline {
+    font-size: 1.05rem;
+  }
+
+  .about-ecosystem-label span {
+    font-size: 0.8rem;
+  }
+
+  .about-ecosystem-card {
+    padding: 28px;
+  }
+
+  .about-ecosystem-icon {
+    font-size: 3.5rem;
+  }
+
+  .about-ecosystem-card-title,
+  .about-ecosystem-cursive {
+    font-size: 1.2rem;
+  }
+
+  .about-footer {
+    padding: 22px 48px;
+  }
+
+  .about-footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .about-footer-copyright,
+  .about-footer-link {
+    font-size: 0.72rem;
+  }
+
+  .about-footer-links {
+    gap: 28px;
+  }
+
+  .about-features-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+/* 1024px — sticky image, 4-col cards */
+@media (min-width: 1024px) {
+  .about-main {
+    /* header = 80px */
+    padding: 108px 80px 56px;
+  }
+
+  .about-image-container {
+    position: sticky;
+    top: 108px;
+    min-height: 500px;
+    max-height: 600px;
+  }
+
+  .about-image {
+    min-height: 500px;
+    max-height: 600px;
+  }
+
+  .about-hero-grid {
+    gap: 48px;
+  }
+
+  .about-hero-title {
+    font-size: 3.8rem;
+  }
+
+  .about-hero-lead {
+    font-size: 1.35rem;
+  }
+
+  .about-hero-description p {
+    font-size: 0.95rem;
+  }
+
+  .about-ecosystem {
+    margin-top: 80px;
+    padding-top: 80px;
+  }
+
+  .about-ecosystem-header {
+    margin-bottom: 56px;
+  }
+
+  .about-ecosystem-title {
+    font-size: 3rem;
+  }
+
+  /* keep 2-col cards at 1024px — 4-col only from 1280px where cards have room */
+  .about-ecosystem-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .about-ecosystem-card {
+    padding: 32px;
+  }
+
+  .about-ecosystem-icon {
+    font-size: 4rem;
+  }
+
+  .about-ecosystem-icon-wrapper {
+    margin-bottom: 48px;
+  }
+
+  .about-ecosystem-card-title,
+  .about-ecosystem-cursive {
+    font-size: 1.25rem;
+  }
+
+  .about-footer {
+    padding: 24px 80px;
+  }
+
+  .about-footer-copyright,
+  .about-footer-link {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+
+  .about-footer-links {
+    gap: 32px;
+  }
+}
+
+/* 1280px — 4-col cards; each card ≈ 262px wide with room for content */
+@media (min-width: 1280px) {
+  .about-hero-title {
+    font-size: 4.2rem;
+  }
+
+  .about-hero-lead {
+    font-size: 1.4rem;
+  }
+
+  .about-hero-description p {
     font-size: 1rem;
+  }
+
+  .about-ecosystem-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
   }
 
   .about-ecosystem-card {
     padding: 24px;
   }
 
-  .about-ecosystem-icon-wrapper {
-    margin-bottom: 32px;
+  .about-ecosystem-card-title,
+  .about-ecosystem-cursive {
+    font-size: 1.1rem;
   }
 
-  .about-ecosystem-icon {
-    font-size: 3rem;
+  .about-ecosystem-card-text {
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+  }
+}
+
+/* 1440px+ — cap content width, centre on ultra-wide */
+@media (min-width: 1440px) {
+  .about-main {
+    padding-left: max(80px, calc((100vw - 1440px) / 2 + 80px));
+    padding-right: max(80px, calc((100vw - 1440px) / 2 + 80px));
+  }
+
+  .about-footer {
+    padding-left: max(80px, calc((100vw - 1440px) / 2 + 80px));
+    padding-right: max(80px, calc((100vw - 1440px) / 2 + 80px));
+  }
+}
+
+/* ─── Landscape short-height phones ─────────────────────────── */
+@media (max-height: 500px) and (orientation: landscape) {
+  .about-main {
+    padding-top: 58px;
+    padding-bottom: 20px;
+  }
+
+  .about-image-container,
+  .about-image {
+    min-height: 200px;
+    max-height: 260px;
+  }
+
+  .about-hero-grid {
+    margin-bottom: 28px;
+  }
+
+  .about-ecosystem {
+    margin-top: 32px;
+    padding-top: 32px;
   }
 }
